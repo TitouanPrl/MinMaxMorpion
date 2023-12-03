@@ -32,7 +32,7 @@ func PrintPlayground(board Board) {
 			if board[i][j] == 0 {
 				fmt.Printf("│   ")
 			} else {
-				fmt.Printf("│ %v ", board[i][j])
+				fmt.Printf("│ %c ", board[i][j])
 			}
 		}
 		fmt.Printf("│\n")
