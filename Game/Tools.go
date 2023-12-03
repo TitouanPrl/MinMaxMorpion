@@ -55,8 +55,8 @@ func PrintPlayground(board Board) {
 	fmt.Printf("───┘\n")
 }
 
-/* initNewBoard returns an empty board */
-func initNewBoard() Board {
+/* InitNewBoard returns an empty board */
+func InitNewBoard() Board {
 	var board Board
 
 	for i := 0; i < 3; i++ {

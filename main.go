@@ -1,4 +1,4 @@
-package Morpion
+package main
 
 import (
 	"Morpion/Game"
@@ -9,19 +9,19 @@ import (
 func main() {
 
 	/* Setting the board to a new game */
-	board := Game.initNewBoard()
+	board := Game.InitNewBoard()
 
 	turn := rand.Intn(2)
 	fmt.Println("Tour initial :", turn)
 
 	/* Running the game until all cells are full */
-	for !Game.isVictory(&board, Game.PlayerX) && !Game.isVictory(&board, Game.PlayerO) && !Game.isDraw(&board) {
+	for !Game.IsVictory(&board, Game.PlayerX) && !Game.IsVictory(&board, Game.PlayerO) && !Game.IsDraw(&board) {
 		Game.PrintPlayground(board)
 
 		if turn == 0 {
-			Game.playerMove(&board)
+			Game.PlayerMove(&board)
 		} else {
-			Game.aiMove(&board)
+			Game.AiMove(&board)
 		}
 
 		/* Changing player */
@@ -33,9 +33,9 @@ func main() {
 	Game.PrintPlayground(board)
 
 	/* Printing the winner */
-	if Game.isVictory(&board, Game.PlayerX) {
+	if Game.IsVictory(&board, Game.PlayerX) {
 		fmt.Println("Vous avez gagné !")
-	} else if Game.isVictory(&board, Game.PlayerO) {
+	} else if Game.IsVictory(&board, Game.PlayerO) {
 		fmt.Println("L'IA a gagné...")
 	} else {
 		fmt.Println("Match nul, bien joué quand même")

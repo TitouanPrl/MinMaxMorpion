@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-/* playerMove ask which move the player want to do */
-func playerMove(board *Board) {
+/* PlayerMove ask which move the player want to do */
+func PlayerMove(board *Board) {
 	var row, col int
 
 	/* Asking the move until it's correct */
@@ -23,8 +23,8 @@ func playerMove(board *Board) {
 	board[row][col] = PlayerX
 }
 
-/* aiMove decide which move the AI will do */
-func aiMove(board *Board) {
+/* AiMove decide which move the AI will do */
+func AiMove(board *Board) {
 	bestValue := -1 << 31
 	var bestMove []int
 

@@ -39,19 +39,19 @@ func minMax(board *Board, depth int, evalMax bool) int {
 
 /* evaluation returns the heuristic for a node */
 func evaluation(board *Board) int {
-	if isVictory(board, PlayerX) {
+	if IsVictory(board, PlayerX) {
 		return 100
-	} else if isVictory(board, PlayerO) {
+	} else if IsVictory(board, PlayerO) {
 		return -100
-	} else if isDraw(board) {
+	} else if IsDraw(board) {
 		return 50
 	}
 
 	return 0
 }
 
-/* isVictory checks if the actual node is a victory one */
-func isVictory(board *Board, player rune) bool {
+/* IsVictory checks if the actual node is a victory one */
+func IsVictory(board *Board, player rune) bool {
 	/* Checking lines and columns */
 	for i := 0; i < 3; i++ {
 		if board[i][0] == player && board[i][1] == player && board[i][2] == player {
@@ -73,8 +73,8 @@ func isVictory(board *Board, player rune) bool {
 	return false
 }
 
-/* isDraw checks if the actual node is a draw one (must be called after isVictory) */
-func isDraw(board *Board) bool {
+/* IsDraw checks if the actual node is a draw one (must be called after IsVictory) */
+func IsDraw(board *Board) bool {
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
 			if board[i][j] == Empty {
