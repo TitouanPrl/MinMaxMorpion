@@ -11,6 +11,7 @@ func main() {
 	/* Setting the board to a new game */
 	board := Game.InitNewBoard()
 
+	depth := 9
 	turn := rand.Intn(2)
 	fmt.Println("Tour initial :", turn)
 
@@ -20,14 +21,16 @@ func main() {
 
 		if turn == 0 {
 			Game.PlayerMove(&board)
+			depth--
 		} else {
 			Game.AiMove(&board)
+			depth--
 		}
 
 		/* Changing player */
 		turn = 1 - turn
 
-		Game.CallClearTerminal()
+		// Game.CallClearTerminal()
 	}
 
 	Game.PrintPlayground(board)

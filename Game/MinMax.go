@@ -1,20 +1,23 @@
 package Game
 
-/* minMax algorithm */
-func minMax(board *Board, depth int, evalMax bool) int {
+/* minMax algorithm
+* We don't use the depth argument because in the case of the Morpion we will test all the cases with no limit
+ */
+func minMax(board *Board, evalMax bool) int {
 	score := evaluation(board)
 
+	/* Stop case */
 	if score != 0 {
 		return score
 	}
 
 	if evalMax {
-		bestValue := -1 << 31
+		bestValue := -1000
 		for i := 0; i < 3; i++ {
 			for j := 0; j < 3; j++ {
 				if board[i][j] == Empty {
-					board[i][j] = PlayerX
-					moveValue := minMax(board, depth+1, false)
+					board[i][j] = PlayerO
+					moveValue := minMax(board, false)
 					board[i][j] = Empty
 					bestValue = maxInt(bestValue, moveValue)
 				}
@@ -22,12 +25,12 @@ func minMax(board *Board, depth int, evalMax bool) int {
 		}
 		return bestValue
 	} else {
-		bestValue := 1 << 31
+		bestValue := 1000
 		for i := 0; i < 3; i++ {
 			for j := 0; j < 3; j++ {
 				if board[i][j] == Empty {
-					board[i][j] = PlayerO
-					moveValue := minMax(board, depth+1, true)
+					board[i][j] = PlayerX
+					moveValue := minMax(board, true)
 					board[i][j] = Empty
 					bestValue = minInt(bestValue, moveValue)
 				}
@@ -40,9 +43,9 @@ func minMax(board *Board, depth int, evalMax bool) int {
 /* evaluation returns the heuristic for a node */
 func evaluation(board *Board) int {
 	if IsVictory(board, PlayerX) {
-		return 100
-	} else if IsVictory(board, PlayerO) {
 		return -100
+	} else if IsVictory(board, PlayerO) {
+		return 100
 	} else if IsDraw(board) {
 		return 50
 	}

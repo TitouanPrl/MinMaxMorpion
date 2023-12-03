@@ -82,15 +82,3 @@ func maxInt(a, b int) int {
 	}
 	return b
 }
-
-/* isFull checks if the board is full */
-func isFull(board *Board) bool {
-	for i := 0; i < 3; i++ {
-		for j := 0; j < 3; j++ {
-			if board[i][j] == Empty {
-				return false
-			}
-		}
-	}
-	return true
-}

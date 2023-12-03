@@ -25,14 +25,14 @@ func PlayerMove(board *Board) {
 
 /* AiMove decide which move the AI will do */
 func AiMove(board *Board) {
-	bestValue := -1 << 31
+	bestValue := -1000
 	var bestMove []int
 
 	for i := 0; i < 3; i++ {
 		for j := 0; j < 3; j++ {
 			if board[i][j] == Empty {
 				board[i][j] = PlayerO
-				moveValue := minMax(board, 0, false)
+				moveValue := minMax(board, false)
 				board[i][j] = Empty
 
 				if moveValue > bestValue {
@@ -42,6 +42,8 @@ func AiMove(board *Board) {
 			}
 		}
 	}
+
+	fmt.Println(bestMove)
 
 	board[bestMove[0]][bestMove[1]] = PlayerO
 }
