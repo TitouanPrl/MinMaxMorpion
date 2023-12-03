@@ -13,7 +13,6 @@ func main() {
 
 	depth := 9
 	turn := rand.Intn(2)
-	fmt.Println("Tour initial :", turn)
 
 	/* Running the game until all cells are full */
 	for !Game.IsVictory(&board, Game.PlayerX) && !Game.IsVictory(&board, Game.PlayerO) && !Game.IsDraw(&board) {
@@ -30,7 +29,7 @@ func main() {
 		/* Changing player */
 		turn = 1 - turn
 
-		// Game.CallClearTerminal()
+		Game.CallClearTerminal()
 	}
 
 	Game.PrintPlayground(board)

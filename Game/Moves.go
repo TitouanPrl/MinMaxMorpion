@@ -43,7 +43,5 @@ func AiMove(board *Board) {
 		}
 	}
 
-	fmt.Println(bestMove)
-
 	board[bestMove[0]][bestMove[1]] = PlayerO
 }
