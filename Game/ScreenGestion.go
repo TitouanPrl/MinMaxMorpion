@@ -1,4 +1,4 @@
-package Morpion
+package Game
 
 import (
 	"os"

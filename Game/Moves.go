@@ -1,6 +1,8 @@
-package Morpion
+package Game
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /* playerMove ask which move the player want to do */
 func playerMove(board *Board) {
