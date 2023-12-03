@@ -1,7 +1,5 @@
 package Game
 
-import "Morpion"
-
 /* minMax algorithm */
 func minMax(board *Board, depth int, evalMax bool) int {
 	score := evaluation(board)
@@ -18,7 +16,7 @@ func minMax(board *Board, depth int, evalMax bool) int {
 					board[i][j] = PlayerX
 					moveValue := minMax(board, depth+1, false)
 					board[i][j] = Empty
-					bestValue = Morpion.maxInt(bestValue, moveValue)
+					bestValue = maxInt(bestValue, moveValue)
 				}
 			}
 		}
@@ -31,7 +29,7 @@ func minMax(board *Board, depth int, evalMax bool) int {
 					board[i][j] = PlayerO
 					moveValue := minMax(board, depth+1, true)
 					board[i][j] = Empty
-					bestValue = Morpion.minInt(bestValue, moveValue)
+					bestValue = minInt(bestValue, moveValue)
 				}
 			}
 		}
