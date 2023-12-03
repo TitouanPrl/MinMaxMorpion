@@ -54,3 +54,43 @@ func PrintPlayground(board Board) {
 	}
 	fmt.Printf("───┘\n")
 }
+
+/* initNewBoard returns an empty board */
+func initNewBoard() Board {
+	var board Board
+
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			board[i][j] = Empty
+		}
+	}
+	return board
+}
+
+/* minInt returns the min between 2 int */
+func minInt(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+/* maxInt returns the max between 2 int */
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+/* isFull checks if the board is full */
+func isFull(board *Board) bool {
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			if board[i][j] == Empty {
+				return false
+			}
+		}
+	}
+	return true
+}
