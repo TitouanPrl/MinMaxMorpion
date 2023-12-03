@@ -8,6 +8,21 @@ import (
 
 func main() {
 
+	/* Ask which solving method to use */
+	var input int
+
+	fmt.Println("Choisissez la méthode de résolution :")
+	fmt.Println("1 - MinMax")
+	fmt.Println("2 - Optimisation Alpha Beta")
+
+	_, err := fmt.Scanln(&input)
+	if err != nil {
+		panic(err)
+	} else if input != 1 && input != 2 {
+		panic(fmt.Errorf("Erreur de saisie"))
+	}
+	fmt.Println("Vous avez choisi la méthode de résolution :", input)
+
 	/* Setting the board to a new game */
 	board := Game.InitNewBoard()
 
@@ -22,7 +37,7 @@ func main() {
 			Game.PlayerMove(&board)
 			depth--
 		} else {
-			Game.AiMove(&board)
+			Game.AiMove(&board, input)
 			depth--
 		}
 

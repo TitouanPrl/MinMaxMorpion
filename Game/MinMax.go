@@ -3,7 +3,7 @@ package Game
 /* minMax algorithm
 * We don't use the depth argument because in the case of the Morpion we will test all the cases with no limit
  */
-func minMax(board *Board, evalMax bool) int {
+func minMax(board *Board, evalMax bool, alpha, beta int) int {
 	score := evaluation(board)
 
 	/* Stop case */
@@ -17,9 +17,17 @@ func minMax(board *Board, evalMax bool) int {
 			for j := 0; j < 3; j++ {
 				if board[i][j] == Empty {
 					board[i][j] = PlayerO
-					moveValue := minMax(board, false)
+					moveValue := minMax(board, false, alpha, beta)
 					board[i][j] = Empty
 					bestValue = maxInt(bestValue, moveValue)
+
+					/* AB variation */
+					if alpha != 0 {
+						alpha = maxInt(alpha, bestValue)
+						if beta <= alpha {
+							break
+						}
+					}
 				}
 			}
 		}
@@ -30,9 +38,17 @@ func minMax(board *Board, evalMax bool) int {
 			for j := 0; j < 3; j++ {
 				if board[i][j] == Empty {
 					board[i][j] = PlayerX
-					moveValue := minMax(board, true)
+					moveValue := minMax(board, true, alpha, beta)
 					board[i][j] = Empty
 					bestValue = minInt(bestValue, moveValue)
+
+					/* AB variation */
+					if beta != 0 {
+						beta = maxInt(beta, bestValue)
+						if beta <= alpha {
+							break
+						}
+					}
 				}
 			}
 		}
